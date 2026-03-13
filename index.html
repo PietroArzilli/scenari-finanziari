@@ -7,222 +7,67 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0e0f11;
-    --surface: #16181c;
-    --border: #2a2d35;
-    --text: #e8eaf0;
-    --muted: #6b7280;
-    --accent-c: #4ade80;
-    --accent-b: #60a5fa;
-    --accent-a: #f97316;
-    --neg: #f87171;
-    --pos: #4ade80;
-    --row-alt: #1c1f26;
-    --best-row: rgba(74, 222, 128, 0.07);
-    --best-border: rgba(74, 222, 128, 0.35);
+    --bg:#0e0f11; --surface:#16181c; --surface2:#1c1f26;
+    --border:#2a2d35; --text:#e8eaf0; --muted:#6b7280;
+    --ac:#4ade80; --ab:#60a5fa; --aa:#f97316;
+    --neg:#f87171; --pos:#4ade80;
   }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;padding:48px 24px 80px}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* HEADER */
+  header{max-width:1280px;margin:0 auto 48px;border-bottom:1px solid var(--border);padding-bottom:40px}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+  header h1{font-size:clamp(26px,4vw,50px);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:#fff}
+  header h1 span{color:var(--ab)}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Syne', sans-serif;
-    min-height: 100vh;
-    padding: 48px 24px 80px;
-  }
+  /* PARAMS PANEL */
+  .params-panel{max-width:1280px;margin:0 auto 56px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 32px}
+  .params-title{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+  .params-sections{display:flex;flex-wrap:wrap;gap:32px}
+  .params-group{display:flex;flex-direction:column;gap:4px;min-width:160px}
+  .params-group-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:6px}
+  .param-row{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+  .param-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.05em}
+  .param-input{background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:7px 10px;width:100%;outline:none;transition:border-color .2s}
+  .param-input:focus{border-color:var(--ab)}
+  .param-input:hover{border-color:#3a3f4a}
+  .recalc-btn{margin-top:20px;background:var(--ab);color:#0e0f11;border:none;border-radius:7px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;padding:10px 28px;cursor:pointer;letter-spacing:.02em;transition:opacity .15s}
+  .recalc-btn:hover{opacity:.85}
 
-  /* ── HEADER ── */
-  header {
-    max-width: 1280px;
-    margin: 0 auto 64px;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 40px;
-  }
-  .eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  header h1 {
-    font-size: clamp(28px, 4vw, 52px);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: #fff;
-  }
-  header h1 span { color: var(--accent-b); }
-  .meta-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 32px;
-    margin-top: 32px;
-  }
-  .meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .meta-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-  .meta-value {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-  }
+  /* SCENARIO */
+  .scenario{max-width:1280px;margin:0 auto 56px}
+  .scenario-header{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+  .scenario-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:3px;font-weight:500}
+  .tag-c{background:rgba(74,222,128,.12);color:var(--ac);border:1px solid rgba(74,222,128,.25)}
+  .tag-b{background:rgba(96,165,250,.12);color:var(--ab);border:1px solid rgba(96,165,250,.25)}
+  .tag-a{background:rgba(249,115,22,.12);color:var(--aa);border:1px solid rgba(249,115,22,.25)}
+  .scenario h2{font-size:21px;font-weight:700;letter-spacing:-.02em;color:#fff}
 
-  /* ── SCENARIO BLOCK ── */
-  .scenario {
-    max-width: 1280px;
-    margin: 0 auto 56px;
-  }
-  .scenario-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-  .scenario-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 3px;
-    font-weight: 500;
-  }
-  .tag-c { background: rgba(74,222,128,.12); color: var(--accent-c); border: 1px solid rgba(74,222,128,.25); }
-  .tag-b { background: rgba(96,165,250,.12); color: var(--accent-b); border: 1px solid rgba(96,165,250,.25); }
-  .tag-a { background: rgba(249,115,22,.12); color: var(--accent-a); border: 1px solid rgba(249,115,22,.25); }
+  /* TABLE */
+  .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  thead tr{background:var(--surface);border-bottom:1px solid var(--border)}
+  th{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:13px 14px;text-align:right;white-space:nowrap;font-weight:500}
+  th:first-child{text-align:left}
+  tbody tr{border-bottom:1px solid var(--border);transition:background .12s}
+  tbody tr:last-child{border-bottom:none}
+  tbody tr:nth-child(even){background:var(--surface2)}
+  tbody tr.best-row{background:rgba(74,222,128,.07)!important;border-left:3px solid rgba(74,222,128,.35)}
+  tbody tr.best-row td:first-child{padding-left:11px}
+  td{padding:12px 14px;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text);white-space:nowrap}
+  td:first-child{text-align:left;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#fff}
+  .neg{color:var(--neg)} .pos{color:var(--pos)}
 
-  .scenario h2 {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: #fff;
-  }
+  /* KPI */
+  .kpi-strip{display:flex;flex-wrap:wrap;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:14px}
+  .kpi{flex:1;min-width:130px;background:var(--surface);padding:16px 18px;display:flex;flex-direction:column;gap:5px}
+  .kpi-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .kpi-val{font-size:17px;font-weight:700;letter-spacing:-.02em}
+  .kpi-val.neg{color:var(--neg)} .kpi-val.pos{color:var(--pos)}
 
-  /* ── TABLE ── */
-  .table-wrap {
-    overflow-x: auto;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-  thead tr {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-  }
-  th {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 14px 16px;
-    text-align: right;
-    white-space: nowrap;
-    font-weight: 500;
-  }
-  th:first-child { text-align: left; }
-
-  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr:nth-child(even) { background: var(--row-alt); }
-  tbody tr.best-row {
-    background: var(--best-row) !important;
-    border-left: 3px solid var(--best-border);
-  }
-  tbody tr.best-row td:first-child { padding-left: 13px; }
-
-  td {
-    padding: 13px 16px;
-    text-align: right;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12.5px;
-    color: var(--text);
-    white-space: nowrap;
-  }
-  td:first-child {
-    text-align: left;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    color: #fff;
-    letter-spacing: -0.01em;
-  }
-  .neg { color: var(--neg); }
-  .pos { color: var(--pos); }
-
-  /* ── KPI STRIP ── */
-  .kpi-strip {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 16px;
-  }
-  .kpi {
-    flex: 1;
-    min-width: 140px;
-    background: var(--surface);
-    padding: 18px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .kpi-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .kpi-val {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-  .kpi-val.neg { color: var(--neg); }
-  .kpi-val.pos { color: var(--pos); }
-
-  /* ── DIVIDER ── */
-  .divider {
-    max-width: 1280px;
-    margin: 0 auto 56px;
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    max-width: 1280px;
-    margin: 64px auto 0;
-    border-top: 1px solid var(--border);
-    padding-top: 24px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
+  .divider{max-width:1280px;margin:0 auto 56px;height:1px;background:var(--border)}
+  footer{max-width:1280px;margin:48px auto 0;border-top:1px solid var(--border);padding-top:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
 </style>
 </head>
 <body>
@@ -230,328 +75,218 @@
 <header>
   <p class="eyebrow">Analisi Economico-Finanziaria · 2026–2028</p>
   <h1>Scenari di<br><span>Crescita &amp; Redditività</span></h1>
-  <div class="meta-grid">
-    <div class="meta-item">
-      <span class="meta-label">Modello</span>
-      <span class="meta-value">Piattaforma prenotazioni locali / ristoranti</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Commissione locali</span>
-      <span class="meta-value">0,55 € / posto</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Commissione ristoranti</span>
-      <span class="meta-value">1,00 € / posto</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Utenti al lancio</span>
-      <span class="meta-value">2.000 (giugno 2026)</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Prenotazioni / utente</span>
-      <span class="meta-value">1 / mese</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Mesi operativi 2026</span>
-      <span class="meta-value">7 (giu–dic)</span>
-    </div>
-  </div>
 </header>
 
-<!-- ════════════════════════════════════════════
-     SCENARIO CONSERVATIVO
-     Utenti: 2.000 → 3.500 → 5.500
-     ════════════════════════════════════════════ -->
-<section class="scenario">
-  <div class="scenario-header">
-    <span class="scenario-tag tag-c">Conservativo</span>
-    <h2>Crescita Prudente</h2>
-  </div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Anno</th>
-          <th>Utenti attivi</th>
-          <th>Pren. locali</th>
-          <th>Pren. ristoranti</th>
-          <th>Pren. totali</th>
-          <th>Ricavi comm. (€)</th>
-          <th>Costi totali (€)</th>
-          <th>Utile anno (€)</th>
-          <th>Utile cumulato (€)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- 2026: 2.000 utenti × 7 mesi = 14.000 pren. | 40% locali=5.600 | 60% rist=8.400
-             Ricavi: 5.600×0,55 + 8.400×1,00 = 3.080 + 8.400 = 11.480
-             Costi: 80.000 + 40.000 + 8.900 + 0 + 0 + 0 = 128.900
-             Utile: 11.480 − 128.900 = −117.420 | Cum: −117.420 -->
-        <tr>
-          <td>2026</td>
-          <td>2.000</td>
-          <td>5.600</td>
-          <td>8.400</td>
-          <td>14.000</td>
-          <td>11.480 €</td>
-          <td>128.900 €</td>
-          <td class="neg">−117.420 €</td>
-          <td class="neg">−117.420 €</td>
-        </tr>
-        <!-- 2027: 3.500 × 12 = 42.000 | 30% loc=12.600 | 70% rist=29.400
-             Ricavi: 12.600×0,55 + 29.400×1,00 = 6.930 + 29.400 = 36.330
-             Costi: 80.000 + 50.000 + 0 + 40.000(tick) + 30.000(ads) + 0(agenzia 2028) = 200.000
-             Utile: 36.330 − 200.000 = −163.670 | Cum: −281.090 -->
-        <tr>
-          <td>2027</td>
-          <td>3.500</td>
-          <td>12.600</td>
-          <td>29.400</td>
-          <td>42.000</td>
-          <td>36.330 €</td>
-          <td>200.000 €</td>
-          <td class="neg">−163.670 €</td>
-          <td class="neg">−281.090 €</td>
-        </tr>
-        <!-- 2028: 5.500 × 12 = 66.000 | 30% loc=19.800 | 70% rist=46.200
-             Ricavi: 19.800×0,55 + 46.200×1,00 = 10.890 + 46.200 = 57.090
-             Costi: 80.000 + 60.000 + 0 + 0 + 0 + 25.000(agenzia) = 165.000
-             Utile: 57.090 − 165.000 = −107.910 | Cum: −389.000 -->
-        <tr class="best-row">
-          <td>2028</td>
-          <td>5.500</td>
-          <td>19.800</td>
-          <td>46.200</td>
-          <td>66.000</td>
-          <td>57.090 €</td>
-          <td>165.000 €</td>
-          <td class="neg">−107.910 €</td>
-          <td class="neg">−389.000 €</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="kpi-strip">
-    <div class="kpi">
-      <span class="kpi-label">Ricavi totali 3 anni</span>
-      <span class="kpi-val">104.900 €</span>
-    </div>
-    <div class="kpi">
-      <span class="kpi-label">Costi totali 3 anni</span>
-      <span class="kpi-val">493.900 €</span>
-    </div>
-    <div class="kpi">
-      <span class="kpi-label">Utile cumulato</span>
-      <span class="kpi-val neg">−389.000 €</span>
-    </div>
-    <div class="kpi">
-      <span class="kpi-label">Utenti 2028</span>
-      <span class="kpi-val">5.500</span>
-    </div>
-    <div class="kpi">
-      <span class="kpi-label">Anno migliore</span>
-      <span class="kpi-val">2028</span>
-    </div>
-  </div>
-</section>
+<!-- ══ PARAMETRI MODIFICABILI ══ -->
+<div class="params-panel">
+  <p class="params-title">⚙ Parametri — modifica e premi Ricalcola</p>
+  <div class="params-sections">
 
-<div class="divider"></div>
+    <div class="params-group">
+      <div class="params-group-label">Commissioni</div>
+      <div class="param-row"><span class="param-label">Locali (€/posto)</span><input class="param-input" id="p_comm_loc" type="number" step="0.01" value="0.55"></div>
+      <div class="param-row"><span class="param-label">Ristoranti (€/posto)</span><input class="param-input" id="p_comm_rist" type="number" step="0.01" value="1.00"></div>
+    </div>
 
-<!-- ════════════════════════════════════════════
-     SCENARIO BASE
-     Utenti: 2.000 → 5.000 → 9.000
-     ════════════════════════════════════════════ -->
-<section class="scenario">
-  <div class="scenario-header">
-    <span class="scenario-tag tag-b">Base</span>
-    <h2>Crescita Moderata</h2>
-  </div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Anno</th>
-          <th>Utenti attivi</th>
-          <th>Pren. locali</th>
-          <th>Pren. ristoranti</th>
-          <th>Pren. totali</th>
-          <th>Ricavi comm. (€)</th>
-          <th>Costi totali (€)</th>
-          <th>Utile anno (€)</th>
-          <th>Utile cumulato (€)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- 2026: identico a Conservativo — stessi utenti iniziali
-             Utile: −117.420 | Cum: −117.420 -->
-        <tr>
-          <td>2026</td>
-          <td>2.000</td>
-          <td>5.600</td>
-          <td>8.400</td>
-          <td>14.000</td>
-          <td>11.480 €</td>
-          <td>128.900 €</td>
-          <td class="neg">−117.420 €</td>
-          <td class="neg">−117.420 €</td>
-        </tr>
-        <!-- 2027: 5.000 × 12 = 60.000 | 30% loc=18.000 | 70% rist=42.000
-             Ricavi: 18.000×0,55 + 42.000×1,00 = 9.900 + 42.000 = 51.900
-             Costi: 80.000 + 50.000 + 0 + 40.000 + 30.000 + 25.000 = 225.000
-             Utile: 51.900 − 225.000 = −173.100 | Cum: −290.520 -->
-        <tr>
-          <td>2027</td>
-          <td>5.000</td>
-          <td>18.000</td>
-          <td>42.000</td>
-          <td>60.000</td>
-          <td>51.900 €</td>
-          <td>225.000 €</td>
-          <td class="neg">−173.100 €</td>
-          <td class="neg">−290.520 €</td>
-        </tr>
-        <!-- 2028: 9.000 × 12 = 108.000 | 30% loc=32.400 | 70% rist=75.600
-             Ricavi: 32.400×0,55 + 75.600×1,00 = 17.820 + 75.600 = 93.420
-             Costi: 80.000 + 60.000 + 0 + 0 + 0 + 25.000 = 165.000
-             Utile: 93.420 − 165.000 = −71.580 | Cum: −362.100 -->
-        <tr class="best-row">
-          <td>2028</td>
-          <td>9.000</td>
-          <td>32.400</td>
-          <td>75.600</td>
-          <td>108.000</td>
-          <td>93.420 €</td>
-          <td>165.000 €</td>
-          <td class="neg">−71.580 €</td>
-          <td class="neg">−362.100 €</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="kpi-strip">
-    <div class="kpi">
-      <span class="kpi-label">Ricavi totali 3 anni</span>
-      <span class="kpi-val">156.800 €</span>
+    <div class="params-group">
+      <div class="params-group-label">Utenti attivi</div>
+      <div class="param-row"><span class="param-label">Lancio 2026</span><input class="param-input" id="p_u26" type="number" value="2000"></div>
+      <div class="param-row"><span class="param-label">Conserv. 2027</span><input class="param-input" id="p_uc27" type="number" value="3500"></div>
+      <div class="param-row"><span class="param-label">Conserv. 2028</span><input class="param-input" id="p_uc28" type="number" value="5500"></div>
+      <div class="param-row"><span class="param-label">Base 2027</span><input class="param-input" id="p_ub27" type="number" value="5000"></div>
+      <div class="param-row"><span class="param-label">Base 2028</span><input class="param-input" id="p_ub28" type="number" value="9000"></div>
+      <div class="param-row"><span class="param-label">Aggress. 2027</span><input class="param-input" id="p_ua27" type="number" value="8000"></div>
+      <div class="param-row"><span class="param-label">Aggress. 2028</span><input class="param-input" id="p_ua28" type="number" value="16000"></div>
     </div>
-    <div class="kpi">
-      <span class="kpi-label">Costi totali 3 anni</span>
-      <span class="kpi-val">518.900 €</span>
-    </div>
-    <div class="kpi">
-      <span class="kpi-label">Utile cumulato</span>
-      <span class="kpi-val neg">−362.100 €</span>
-    </div>
-    <div class="kpi">
-      <span class="kpi-label">Utenti 2028</span>
-      <span class="kpi-val">9.000</span>
-    </div>
-    <div class="kpi">
-      <span class="kpi-label">Anno migliore</span>
-      <span class="kpi-val">2028</span>
-    </div>
-  </div>
-</section>
 
-<div class="divider"></div>
+    <div class="params-group">
+      <div class="params-group-label">Mix prenotazioni</div>
+      <div class="param-row"><span class="param-label">% Locali 2026</span><input class="param-input" id="p_mix26" type="number" step="1" min="0" max="100" value="40"></div>
+      <div class="param-row"><span class="param-label">% Locali 2027-28</span><input class="param-input" id="p_mix2728" type="number" step="1" min="0" max="100" value="30"></div>
+      <div class="param-row"><span class="param-label">Pren./utente/mese</span><input class="param-input" id="p_freq" type="number" step="0.1" value="1"></div>
+      <div class="param-row"><span class="param-label">Mesi operativi 2026</span><input class="param-input" id="p_mesi26" type="number" min="1" max="12" value="7"></div>
+    </div>
 
-<!-- ════════════════════════════════════════════
-     SCENARIO AGGRESSIVO
-     Utenti: 2.000 → 8.000 → 16.000
-     ════════════════════════════════════════════ -->
-<section class="scenario">
-  <div class="scenario-header">
-    <span class="scenario-tag tag-a">Aggressivo</span>
-    <h2>Crescita Accelerata</h2>
+    <div class="params-group">
+      <div class="params-group-label">Costi fissi (€/anno)</div>
+      <div class="param-row"><span class="param-label">Stipendi</span><input class="param-input" id="p_stip" type="number" value="80000"></div>
+      <div class="param-row"><span class="param-label">Altri op. 2026</span><input class="param-input" id="p_op26" type="number" value="40000"></div>
+      <div class="param-row"><span class="param-label">Altri op. 2027</span><input class="param-input" id="p_op27" type="number" value="50000"></div>
+      <div class="param-row"><span class="param-label">Altri op. 2028</span><input class="param-input" id="p_op28" type="number" value="60000"></div>
+      <div class="param-row"><span class="param-label">Interessi 2026</span><input class="param-input" id="p_int" type="number" value="8900"></div>
+    </div>
+
+    <div class="params-group">
+      <div class="params-group-label">Investimenti one-off</div>
+      <div class="param-row"><span class="param-label">Ticketing (2027)</span><input class="param-input" id="p_tick" type="number" value="40000"></div>
+      <div class="param-row"><span class="param-label">Modulo Ads (2027)</span><input class="param-input" id="p_ads" type="number" value="30000"></div>
+      <div class="param-row"><span class="param-label">Agenzia mktg/anno</span><input class="param-input" id="p_ag" type="number" value="25000"></div>
+      <div class="param-row"><span class="param-label">Agenzia da (Base/Agg)</span><input class="param-input" id="p_ag_start_ba" type="number" min="2026" max="2030" value="2027"></div>
+      <div class="param-row"><span class="param-label">Agenzia da (Conserv)</span><input class="param-input" id="p_ag_start_c" type="number" min="2026" max="2030" value="2028"></div>
+    </div>
+
   </div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Anno</th>
-          <th>Utenti attivi</th>
-          <th>Pren. locali</th>
-          <th>Pren. ristoranti</th>
-          <th>Pren. totali</th>
-          <th>Ricavi comm. (€)</th>
-          <th>Costi totali (€)</th>
-          <th>Utile anno (€)</th>
-          <th>Utile cumulato (€)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- 2026: identico — 11.480 ricavi, 128.900 costi, −117.420, cum −117.420 -->
-        <tr>
-          <td>2026</td>
-          <td>2.000</td>
-          <td>5.600</td>
-          <td>8.400</td>
-          <td>14.000</td>
-          <td>11.480 €</td>
-          <td>128.900 €</td>
-          <td class="neg">−117.420 €</td>
-          <td class="neg">−117.420 €</td>
-        </tr>
-        <!-- 2027: 8.000 × 12 = 96.000 | 30% loc=28.800 | 70% rist=67.200
-             Ricavi: 28.800×0,55 + 67.200×1,00 = 15.840 + 67.200 = 83.040
-             Costi: 80.000 + 50.000 + 0 + 40.000 + 30.000 + 25.000 = 225.000
-             Utile: 83.040 − 225.000 = −141.960 | Cum: −259.380 -->
-        <tr>
-          <td>2027</td>
-          <td>8.000</td>
-          <td>28.800</td>
-          <td>67.200</td>
-          <td>96.000</td>
-          <td>83.040 €</td>
-          <td>225.000 €</td>
-          <td class="neg">−141.960 €</td>
-          <td class="neg">−259.380 €</td>
-        </tr>
-        <!-- 2028: 16.000 × 12 = 192.000 | 30% loc=57.600 | 70% rist=134.400
-             Ricavi: 57.600×0,55 + 134.400×1,00 = 31.680 + 134.400 = 166.080
-             Costi: 80.000 + 60.000 + 0 + 0 + 0 + 25.000 = 165.000
-             Utile: 166.080 − 165.000 = +1.080 | Cum: −258.300 -->
-        <tr class="best-row">
-          <td>2028</td>
-          <td>16.000</td>
-          <td>57.600</td>
-          <td>134.400</td>
-          <td>192.000</td>
-          <td>166.080 €</td>
-          <td>165.000 €</td>
-          <td class="pos">+1.080 €</td>
-          <td class="neg">−258.300 €</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="kpi-strip">
-    <div class="kpi">
-      <span class="kpi-label">Ricavi totali 3 anni</span>
-      <span class="kpi-val">260.600 €</span>
-    </div>
-    <div class="kpi">
-      <span class="kpi-label">Costi totali 3 anni</span>
-      <span class="kpi-val">518.900 €</span>
-    </div>
-    <div class="kpi">
-      <span class="kpi-label">Utile cumulato</span>
-      <span class="kpi-val neg">−258.300 €</span>
-    </div>
-    <div class="kpi">
-      <span class="kpi-label">Utenti 2028</span>
-      <span class="kpi-val">16.000</span>
-    </div>
-    <div class="kpi">
-      <span class="kpi-label">Primo anno in utile</span>
-      <span class="kpi-val pos">2028 ✓</span>
-    </div>
-  </div>
-</section>
+  <button class="recalc-btn" onclick="render()">↻ Ricalcola scenari</button>
+</div>
+
+<!-- ══ OUTPUT ══ -->
+<div id="output"></div>
 
 <footer>
-  <span>Commissioni: locali 0,55 € · ristoranti 1,00 € · 1 pren./utente/mese · mix 2026: 40/60 · 2027–2028: 30/70</span>
-  <span>Interessi finanziamento: 8.900 € nel 2026 · Ticketing+Ads: 70.000 € nel 2027 · Agenzia: 25.000 €/anno</span>
+  <span id="footer-l">—</span>
+  <span id="footer-r">—</span>
 </footer>
 
+<script>
+const $ = id => document.getElementById(id);
+const v = id => parseFloat($(id).value) || 0;
+
+function fmt(n, euro=true) {
+  const abs = Math.abs(n);
+  const s = abs.toLocaleString('it-IT', {minimumFractionDigits: euro?2:0, maximumFractionDigits: euro?2:0});
+  const sign = n < 0 ? '−' : (euro && n > 0 ? '+' : '');
+  return sign + s + (euro ? ' €' : '');
+}
+
+function calcScenario(users26, users27, users28) {
+  const comm_loc  = v('p_comm_loc');
+  const comm_rist = v('p_comm_rist');
+  const freq      = v('p_freq');
+  const mesi26    = v('p_mesi26');
+  const mix26     = v('p_mix26') / 100;
+  const mix2728   = v('p_mix2728') / 100;
+  const stip      = v('p_stip');
+  const op26      = v('p_op26');
+  const op27      = v('p_op27');
+  const op28      = v('p_op28');
+  const int26     = v('p_int');
+  const tick      = v('p_tick');
+  const ads       = v('p_ads');
+  const ag        = v('p_ag');
+  const agStartBA = v('p_ag_start_ba');
+  const agStartC  = v('p_ag_start_c');
+
+  const cfg = [
+    { anno:2026, u:users26, mesi:mesi26,   mix:mix26,   op:op26,  interessi:int26, ticketing:0,    adsV:0,   agStart:{c:agStartC, ba:agStartBA} },
+    { anno:2027, u:users27, mesi:12,        mix:mix2728, op:op27,  interessi:0,     ticketing:tick, adsV:ads, agStart:{c:agStartC, ba:agStartBA} },
+    { anno:2028, u:users28, mesi:12,        mix:mix2728, op:op28,  interessi:0,     ticketing:0,    adsV:0,   agStart:{c:agStartC, ba:agStartBA} },
+  ];
+
+  let cum = 0;
+  return cfg.map(r => {
+    const tot_pren = r.u * r.mesi * freq;
+    const pren_loc = tot_pren * r.mix;
+    const pren_rist= tot_pren * (1 - r.mix);
+    const ricavi   = pren_loc * comm_loc + pren_rist * comm_rist;
+    const c_ag_c   = r.anno >= r.agStart.c  ? ag : 0;
+    const c_ag_ba  = r.anno >= r.agStart.ba ? ag : 0;
+    return { anno:r.anno, u:r.u, mesi:r.mesi, pren_loc, pren_rist, tot_pren, ricavi,
+             stip, op:r.op, interessi:r.interessi, tick:r.ticketing, ads:r.adsV,
+             ag_c:c_ag_c, ag_ba:c_ag_ba, cum_before:cum };
+  });
+}
+
+function buildRows(rows, agMode) {
+  // agMode: 'c' or 'ba'
+  let cum = 0;
+  return rows.map(r => {
+    const c_ag = agMode === 'c' ? r.ag_c : r.ag_ba;
+    const costi = r.stip + r.op + r.interessi + r.tick + r.ads + c_ag;
+    const utile = r.ricavi - costi;
+    cum += utile;
+    return { ...r, c_ag, costi, utile, cum };
+  });
+}
+
+function tableHTML(rows, accentClass) {
+  // find best (highest utile) row index
+  const bestIdx = rows.reduce((bi, r, i) => r.utile > rows[bi].utile ? i : bi, 0);
+  let html = `<div class="table-wrap"><table>
+    <thead><tr>
+      <th>Anno</th><th>Utenti</th><th>Pren. locali</th><th>Pren. ristoranti</th>
+      <th>Pren. totali</th><th>Ricavi comm.</th><th>Costi totali</th>
+      <th>Utile anno</th><th>Utile cumulato</th>
+    </tr></thead><tbody>`;
+  rows.forEach((r, i) => {
+    const best = i === bestIdx ? ' class="best-row"' : '';
+    const ucls = r.utile >= 0 ? 'pos' : 'neg';
+    const ccls = r.cum   >= 0 ? 'pos' : 'neg';
+    html += `<tr${best}>
+      <td>${r.anno}</td>
+      <td>${fmt(r.u, false)}</td>
+      <td>${fmt(r.pren_loc, false)}</td>
+      <td>${fmt(r.pren_rist, false)}</td>
+      <td>${fmt(r.tot_pren, false)}</td>
+      <td>${fmt(r.ricavi)}</td>
+      <td>${fmt(r.costi)}</td>
+      <td class="${ucls}">${fmt(r.utile)}</td>
+      <td class="${ccls}">${fmt(r.cum)}</td>
+    </tr>`;
+  });
+  html += '</tbody></table></div>';
+
+  const totalRicavi = rows.reduce((s,r) => s+r.ricavi, 0);
+  const totalCosti  = rows.reduce((s,r) => s+r.costi,  0);
+  const finalCum    = rows[rows.length-1].cum;
+  const usersLast   = rows[rows.length-1].u;
+  const breakEven   = rows.find(r => r.utile >= 0);
+
+  const ccCum = finalCum >= 0 ? 'pos' : 'neg';
+  html += `<div class="kpi-strip">
+    <div class="kpi"><span class="kpi-label">Ricavi totali 3 anni</span><span class="kpi-val">${fmt(totalRicavi)}</span></div>
+    <div class="kpi"><span class="kpi-label">Costi totali 3 anni</span><span class="kpi-val">${fmt(totalCosti)}</span></div>
+    <div class="kpi"><span class="kpi-label">Utile cumulato</span><span class="kpi-val ${ccCum}">${fmt(finalCum)}</span></div>
+    <div class="kpi"><span class="kpi-label">Utenti 2028</span><span class="kpi-val">${fmt(usersLast,false)}</span></div>
+    <div class="kpi"><span class="kpi-label">Primo anno in utile</span><span class="kpi-val ${breakEven?'pos':'neg'}">${breakEven ? breakEven.anno+' ✓' : 'N/A'}</span></div>
+  </div>`;
+  return html;
+}
+
+function render() {
+  const u26 = v('p_u26');
+  const u27_c = v('p_uc27'), u28_c = v('p_uc28');
+  const u27_b = v('p_ub27'), u28_b = v('p_ub28');
+  const u27_a = v('p_ua27'), u28_a = v('p_ua28');
+
+  const raw_c = calcScenario(u26, u27_c, u28_c);
+  const raw_b = calcScenario(u26, u27_b, u28_b);
+  const raw_a = calcScenario(u26, u27_a, u28_a);
+
+  const rows_c = buildRows(raw_c, 'c');
+  const rows_b = buildRows(raw_b, 'ba');
+  const rows_a = buildRows(raw_a, 'ba');
+
+  const scenarios = [
+    { id:'c', tag:'tag-c', label:'Conservativo', sub:'Crescita Prudente',  rows:rows_c },
+    { id:'b', tag:'tag-b', label:'Base',         sub:'Crescita Moderata',  rows:rows_b },
+    { id:'a', tag:'tag-a', label:'Aggressivo',   sub:'Crescita Accelerata',rows:rows_a },
+  ];
+
+  let html = '';
+  scenarios.forEach((s, i) => {
+    html += `<section class="scenario">
+      <div class="scenario-header">
+        <span class="scenario-tag ${s.tag}">${s.label}</span>
+        <h2>${s.sub}</h2>
+      </div>
+      ${tableHTML(s.rows, s.tag)}
+    </section>`;
+    if (i < scenarios.length - 1) html += '<div class="divider"></div>';
+  });
+
+  $('output').innerHTML = html;
+
+  // footer
+  const cl = v('p_comm_loc'), cr = v('p_comm_rist');
+  $('footer-l').textContent = `Commissioni: locali ${cl.toFixed(2).replace('.',',')} € · ristoranti ${cr.toFixed(2).replace('.',',')} € · ${v('p_freq')} pren./utente/mese · mix 2026: ${v('p_mix26')}/${100-v('p_mix26')} · 2027–28: ${v('p_mix2728')}/${100-v('p_mix2728')}`;
+  $('footer-r').textContent = `Interessi: ${fmt(v('p_int'))} nel 2026 · Ticketing+Ads: ${fmt(v('p_tick')+v('p_ads'))} nel 2027 · Agenzia: ${fmt(v('p_ag'))}/anno`;
+}
+
+// auto-render on input change
+document.querySelectorAll('.param-input').forEach(el => el.addEventListener('input', render));
+
+// initial render
+render();
+</script>
 </body>
 </html>
